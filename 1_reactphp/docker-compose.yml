@@ -1,0 +1,17 @@
+version: '2'
+services:
+  web:
+    image: php:7.1-alpine
+    volumes:
+     - .:/app
+    depends_on:
+      - composer
+    ports:
+     - "1337:1337"
+    command: php /app/index.php
+
+  composer:
+    image: composer:latest
+    volumes:
+      - .:/app
+    command: composer install
